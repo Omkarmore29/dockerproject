@@ -1,5 +1,9 @@
 #version1.0
-FROM ubuntu:18.04
-RUN apt update ;apt -y install nginx
-RUN echo'HI,am inside Docker Container' > /var/www/html/index.html
-EXPOSE 80
+FROM gcc:latest
+COPY ./usr/src/myapp
+WORKDIR /usr/src/myapp
+RUN gcc -o first first.c
+CMD ["./first"]
+$cat first.c
+#include <stdio.h>
+int main() {printf("Hello World\n")}
